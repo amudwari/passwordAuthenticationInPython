@@ -12,6 +12,9 @@ def menu():
         credentials()
     elif choice == 3:
         exit()
+    elif choice == 2:
+        #username = input("Please Enter your username: ")
+        #userPassword = input("Please Enter Password: ")
 
 def generateValues():
     import random
@@ -48,7 +51,14 @@ def credentials():
     else:
         print("invalid input")
 
+def checkUser(name):
+    username = input("Please Enter your username: ")
+    password = input("Please Enter Password: ")
+    password_file = open("password.txt", "w")
 
+    lines = password_file.split( )
+    print(lines)
+    password_file.close()
 
 menu()
 generateValues()
