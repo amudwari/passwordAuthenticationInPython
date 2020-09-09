@@ -1,11 +1,19 @@
 
 def seperate():
     password_file = open("password.txt", "r")
-    for line in password_file:
-        lines = line.split()
-        print(lines)
-    # return lines
-    #password_file.close()
+    for lines in password_file:
+        line = lines.split()
+        #print(line)
+        for words in line:
+            word = words.rstrip( " ")
+
+            print(word)
+
+    password_file.close()
+
+
+
+
 
 def menu():
     print("""Welcome to Password Authentication Software
