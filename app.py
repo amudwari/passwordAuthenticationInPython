@@ -1,4 +1,12 @@
 
+def seperate():
+    password_file = open("password.txt", "r")
+    for line in password_file:
+        lines = line.split()
+        print(lines)
+    # return lines
+    #password_file.close()
+
 def menu():
     print("""Welcome to Password Authentication Software
 
@@ -13,8 +21,9 @@ def menu():
     elif choice == 3:
         exit()
     elif choice == 2:
-        #username = input("Please Enter your username: ")
-        #userPassword = input("Please Enter Password: ")
+       # name = input("enter your name: ")
+         seperate()
+
 
 def generateValues():
     import random
@@ -51,14 +60,17 @@ def credentials():
     else:
         print("invalid input")
 
-def checkUser(name):
-    username = input("Please Enter your username: ")
-    password = input("Please Enter Password: ")
-    password_file = open("password.txt", "w")
+    """def checkUser(name):
+    #password = input("Please Enter Password: ")
+    password_file = open("password.txt", "r")
+    for line in password_file:
+        lines = password_file.split()
+        print(lines)
+        return lines
+    password_file.close()"""
 
-    lines = password_file.split( )
-    print(lines)
-    password_file.close()
+
+
 
 menu()
 generateValues()
