@@ -4,32 +4,38 @@ def md5(password):
     result = hashlib.md5(password.encode())
     return result.hexdigest()
 
-def seperate(userName):
+def check(userName):
     password_file = open("password.txt", "r")
     for lines in password_file:
         line = lines.split()
         name = line[0]
         salt = line[1]
         hash = line[2]
-        #print(name)
-        #print(salt)
-        #print(hash)
+   # print(name)
         if userName == name:
-            #print(userName)
-            #print(salt)
-            #print(hash)
             password = input("Please Enter your Password: ")
             combinedWord = salt + password
             newHash = md5(combinedWord)
             #print(newHash)
             if newHash == hash:
                 print("You are a verified user")
-
     password_file.close()
+    exit()
 
+def checkUser():
+    username = input("enter Username: ")
+    password_file = open("password.txt", "r")
 
-
-
+    for lines in password_file:
+        line = lines.split()
+        name = line[0]
+        #print(name)
+        if username != name:
+            print("Unverified User!!!")
+            exit()
+        else:
+            goto = check(username)
+            goto()
 
 def menu():
     print("""Welcome to Password Authentication Software
@@ -45,8 +51,7 @@ def menu():
     elif choice == 3:
         exit()
     elif choice == 2:
-         userName = input("enter your name: ")
-         seperate(userName)
+        checkUser()
 
 
 def generateValues():
@@ -89,9 +94,6 @@ def credentials():
         print(lines)
         return lines
     password_file.close()"""
-
-
-
 
 menu()
 generateValues()
