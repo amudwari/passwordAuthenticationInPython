@@ -1,13 +1,29 @@
 
-def seperate():
+def md5(password):
+    import hashlib
+    result = hashlib.md5(password.encode())
+    return result.hexdigest()
+
+def seperate(userName):
     password_file = open("password.txt", "r")
     for lines in password_file:
         line = lines.split()
-        #print(line)
-        for words in line:
-            word = words.rstrip( " ")
-
-            print(word)
+        name = line[0]
+        salt = line[1]
+        hash = line[2]
+        #print(name)
+        #print(salt)
+        #print(hash)
+        if userName == name:
+            #print(userName)
+            #print(salt)
+            #print(hash)
+            password = input("Please Enter your Password: ")
+            combinedWord = salt + password
+            newHash = md5(combinedWord)
+            #print(newHash)
+            if newHash == hash:
+                print("You are a verified user")
 
     password_file.close()
 
@@ -29,8 +45,8 @@ def menu():
     elif choice == 3:
         exit()
     elif choice == 2:
-       # name = input("enter your name: ")
-         seperate()
+         userName = input("enter your name: ")
+         seperate(userName)
 
 
 def generateValues():
@@ -38,10 +54,7 @@ def generateValues():
     randomNum = random.randrange(100, 999, 1)
     return randomNum
 
-def md5(password):
-    import hashlib
-    result = hashlib.md5(password.encode())
-    return result.hexdigest()
+
 
 def credentials():
 
