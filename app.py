@@ -1,4 +1,12 @@
 
+def file_read(fname):
+    content_array = []
+    with open(fname) as f:
+        # Content_list is the list that contains the read lines.
+        for line in f:
+            content_array.append(line)
+        print(content_array)
+
 def md5(password):
     import hashlib
     result = hashlib.md5(password.encode())
@@ -11,7 +19,7 @@ def check(userName):
         name = line[0]
         salt = line[1]
         hash = line[2]
-   # print(name)
+        #print(name)
         if userName == name:
             password = input("Please Enter your Password: ")
             combinedWord = salt + password
@@ -30,12 +38,12 @@ def checkUser():
         line = lines.split()
         name = line[0]
         #print(name)
-        if username != name:
-            print("Unverified User!!!")
-            exit()
-        else:
+        if username == name:
             goto = check(username)
-            goto()
+            break
+        else:
+            print("try again")
+    password_file.close()
 
 def menu():
     print("""Welcome to Password Authentication Software
@@ -51,18 +59,15 @@ def menu():
     elif choice == 3:
         exit()
     elif choice == 2:
-        checkUser()
-
+  #      checkUser()
+        file_read("password.txt")
 
 def generateValues():
     import random
     randomNum = random.randrange(100, 999, 1)
     return randomNum
 
-
-
 def credentials():
-
     name = input("Enter your name:")
     password = input("Enter your password:")
 
@@ -71,9 +76,7 @@ def credentials():
 
     combinedWord = str(randomNum) + password
     hashValue =  md5(combinedWord)
-    password_file.write( "\n" + name + "  " + str(randomNum) + "  " + hashValue )
-
-   # password_file.write( "\n" + name + hashValue)
+    password_file.write("\n" + name + "  " + str(randomNum) + "  " + hashValue)
 
     password_file.close()
     print("""Credentials successfully added!! """)
@@ -94,7 +97,6 @@ def credentials():
         print(lines)
         return lines
     password_file.close()"""
-
 menu()
 generateValues()
 
