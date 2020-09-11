@@ -1,11 +1,10 @@
-
 def file_read(fname):
     content_array = []
     with open(fname) as f:
         # Content_list is the list that contains the read lines.
         for line in f:
             content_array.append(line)
-        print(content_array[0])
+        print(content_array)
 
 def md5(password):
     import hashlib
@@ -59,7 +58,7 @@ def menu():
     elif choice == 3:
         exit()
     elif choice == 2:
-  #      checkUser()
+        #checkUser()
         file_read("password.txt")
 
 def generateValues():
@@ -89,14 +88,6 @@ def credentials():
     else:
         print("invalid input")
 
-    """def checkUser(name):
-    #password = input("Please Enter Password: ")
-    password_file = open("password.txt", "r")
-    for line in password_file:
-        lines = password_file.split()
-        print(lines)
-        return lines
-    password_file.close()"""
 menu()
 generateValues()
 
