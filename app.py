@@ -5,7 +5,7 @@ def file_read(fname):
         # Content_list is the list that contains the read lines.
         for line in f:
             content_array.append(line)
-        print(content_array)
+        print(content_array[0])
 
 def md5(password):
     import hashlib
