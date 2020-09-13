@@ -6,6 +6,20 @@ def file_read(fname):
             content_array.append(line)
         print(content_array)
 
+def array():
+    #import numpy as np
+    with open("password.txt") as password:
+        lines = [line.split() for line in password]
+        #print(lines)
+        #trans = np.transpose(lines)
+        result = [list(i) for i in zip(*lines)]
+        print(result[0])
+        name_file = open("name.txt", "a")
+
+        password_file.write("\n" + name + "  " + str(randomNum) + "  " + hashValue)
+
+        password_file.close()
+
 def md5(password):
     import hashlib
     result = hashlib.md5(password.encode())
@@ -59,7 +73,8 @@ def menu():
         exit()
     elif choice == 2:
         #checkUser()
-        file_read("password.txt")
+        #file_read("password.txt")
+        array()
 
 def generateValues():
     import random
