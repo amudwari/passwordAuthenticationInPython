@@ -1,31 +1,24 @@
-def file_read(fname):
-    content_array = []
-    with open(fname) as f:
-        # Content_list is the list that contains the read lines.
-        for line in f:
-            content_array.append(line)
-        print(content_array)
 
 def array():
-    #import numpy as np
+    username = input("Please enter your Username: ")
     with open("password.txt") as password:
         lines = [line.split() for line in password]
-        #print(lines)
-        #trans = np.transpose(lines)
+        # print(lines)
+
         result = [list(i) for i in zip(*lines)]
-        print(result[0])
-        name_file = open("name.txt", "a")
-
-        password_file.write("\n" + name + "  " + str(randomNum) + "  " + hashValue)
-
-        password_file.close()
+        names = result[0]
+        if username in names:
+            print("Verified User!")
+            check(username)
+        else:
+            print("No Username Found")
 
 def md5(password):
     import hashlib
     result = hashlib.md5(password.encode())
     return result.hexdigest()
 
-def check(userName):
+def check(username):
     password_file = open("password.txt", "r")
     for lines in password_file:
         line = lines.split()
@@ -33,13 +26,15 @@ def check(userName):
         salt = line[1]
         hash = line[2]
         #print(name)
-        if userName == name:
+        if username == name:
             password = input("Please Enter your Password: ")
             combinedWord = salt + password
             newHash = md5(combinedWord)
             #print(newHash)
             if newHash == hash:
                 print("You are a verified user")
+            else:
+                print("Wrong password")
     password_file.close()
     exit()
 
