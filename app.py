@@ -3,9 +3,10 @@ def array():
     username = input("Please enter your Username: ")
     with open("password.txt") as password:
         lines = [line.split() for line in password]
-        # print(lines)
+        #print(lines)
         result = [list(i) for i in zip(*lines)]
         names = result[0]
+        #print(names)
         if username in names:
             print("Verified User!")
             check(username)
@@ -51,13 +52,54 @@ def checkUser():
             print("try again")
     password_file.close()
 
+def rainbowarray():
+    with open("rainbow.txt") as rainbow:
+        lines = [line.split() for line in rainbow]
+        #print(lines)
+        result = [list(i) for i in zip(*lines)]
+        hashvalues = result[1]
+        #print(hashvalues)
+        return hashvalues
+
 def attack():
-    with open("rainbow.txt") as rainbowfile:
-        lines = [line.split() for line in rainbowfile]
-        print(lines)
+    username = input("Please enter your Username to crack the password: ")
+    with open("password.txt") as password:
+        lines = [line.split() for line in password]
+        #print(lines)
+        result = [list(i) for i in zip(*lines)]
+        names = result[0]
+        hashvalues = result[2]
+        #print(names)
+        if username in names:
+            index_password = names.index(username)
+            print("Verified User!")
+            hash_paswword = hashvalues[index_password]
+            print(hashvalues[index_password])  # finds hash value of given username
+            hash_rainbowtable = rainbowarray()
+            if hash_paswword in hash_rainbowtable:
+                index_rainbow = 
+
+            #print(index)
+            #check(username)
+
+        else:
+            print("No Username Found")
+
+
+
+"""def array():
+    username = input("Please enter your Username: ")
+    with open("password.txt") as password:
+        lines = [line.split() for line in password]
+        #print(lines)
         result = [list(i) for i in zip(*lines)]
         names = result[0]
         #print(names)
+        if username in names:
+            print("Verified User!")
+            check(username)
+        else:
+            print("No Username Found")"""
 
 def menu():
     print("""Welcome to Password Authentication Software
@@ -76,6 +118,7 @@ def menu():
     elif choice == 2:
         array()
     elif choice == 3:
+        #rainbowarray()
         attack()
 
 def generateValues():
