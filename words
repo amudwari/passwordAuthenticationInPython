@@ -1,0 +1,24 @@
+
+def md5(password):
+    import hashlib
+    result = hashlib.md5(password.encode())
+    return result.hexdigest()
+
+smallwords = open("small.txt", "r")
+for lines in smallwords:
+
+    # print(lines)
+    lines = lines.rstrip()
+    for i in range(10, 100, 1):
+        rainbowtable = open("rainbow.txt", "a")
+        combinedword = str(i) + lines
+        #print (combinedword)
+        hashvalue = md5(combinedword)
+        #print (hashvalue)
+        #print(lines  + "  " + hashvalue )
+        rainbowtable.write(lines  + "  " + hashvalue + "\n")
+
+        rainbowtable.close()
+smallwords.close()
+
+print("Done!")

@@ -30,7 +30,6 @@ def check(username):
             password = input("Please Enter your Password: ")
             combinedWord = salt + password
             newHash = md5(combinedWord)
-            #print(newHash)
             if newHash == hash:
                 print("You are a verified user")
             else:
@@ -73,7 +72,7 @@ def menu():
 
 def generateValues():
     import random
-    randomNum = random.randrange(100, 999, 1)
+    randomNum = random.randrange(10, 100, 1)
     return randomNum
 
 def credentials():
