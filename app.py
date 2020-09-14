@@ -4,7 +4,6 @@ def array():
     with open("password.txt") as password:
         lines = [line.split() for line in password]
         # print(lines)
-
         result = [list(i) for i in zip(*lines)]
         names = result[0]
         if username in names:
@@ -52,23 +51,32 @@ def checkUser():
             print("try again")
     password_file.close()
 
+def attack():
+    with open("rainbow.txt") as rainbowfile:
+        lines = [line.split() for line in rainbowfile]
+        print(lines)
+        result = [list(i) for i in zip(*lines)]
+        names = result[0]
+        #print(names)
+
 def menu():
     print("""Welcome to Password Authentication Software
 
     Please Choose one of the following:
     1. Sign up to the system
     2. Login to the system
-    3. Exit""")
+    3. Crack Password
+    4. Exit""")
 
     choice = int(input("Enter your choice: "))
     if choice == 1:
         credentials()
-    elif choice == 3:
+    elif choice == 4:
         exit()
     elif choice == 2:
-        #checkUser()
-        #file_read("password.txt")
         array()
+    elif choice == 3:
+        attack()
 
 def generateValues():
     import random
@@ -96,6 +104,8 @@ def credentials():
         return
     else:
         print("invalid input")
+
+
 
 menu()
 generateValues()
