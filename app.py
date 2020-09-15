@@ -25,7 +25,6 @@ def check(username):
         name = line[0]
         salt = line[1]
         hash = line[2]
-        #print(name)
         if username == name:
             password = input("Please Enter your Password: ")
             combinedWord = salt + password
@@ -44,7 +43,6 @@ def checkUser():
     for lines in password_file:
         line = lines.split()
         name = line[0]
-        #print(name)
         if username == name:
             goto = check(username)
             break
@@ -55,20 +53,15 @@ def checkUser():
 def rainbowarray():
     with open("rainbow.txt") as rainbow:
         lines = [line.split() for line in rainbow]
-        #print(lines)
         result = [list(i) for i in zip(*lines)]
         hashvalues = result[1]
-        #print(hashvalues)
         return hashvalues
 
 def find_matching_pw():
     with open("rainbow.txt") as rainbow:
         lines = [line.split() for line in rainbow]
-        #print(lines)
         result = [list(i) for i in zip(*lines)]
         hashvalues = result[0]
-        #index_words = hashvalues(num)
-        #print(index_words)
         return hashvalues
 
 
@@ -76,47 +69,23 @@ def attack():
     username = input("Please enter your Username to crack the password: ")
     with open("password.txt") as password:
         lines = [line.split() for line in password]
-        #print(lines)
         result = [list(i) for i in zip(*lines)]
-        names = result[0]
-        hashvalues = result[2]
-        #print(names)
+        names = result[0] # stores just the usernames in a list
+        hashvalues = result[2]  # stores just the hash in a list
         if username in names:
             index_passwordfile = names.index(username)
             print("Searching for password in dictionary file...")
-            hash_paswword = hashvalues[index_passwordfile]
-            #print(hash_paswword)  # finds hash value of given username
+            hash_paswword = hashvalues[index_passwordfile] # finds hash value of given username
             hash_rainbowtable = rainbowarray()
             if hash_paswword in hash_rainbowtable:
                 index_rainbow = hash_rainbowtable.index(hash_paswword)
                 final_answer = find_matching_pw()
                 cracked_pw = final_answer[index_rainbow]
                 print("Congratulations! The password has been Cracked. The Password is: " + cracked_pw)
-                #print(index_rainbow)
-
             else:
                 print("UserName not found!")
-            #print(index)
-            #check(username)
-
         else:
             print("No Username Found")
-
-
-
-"""def array():
-    username = input("Please enter your Username: ")
-    with open("password.txt") as password:
-        lines = [line.split() for line in password]
-        #print(lines)
-        result = [list(i) for i in zip(*lines)]
-        names = result[0]
-        #print(names)
-        if username in names:
-            print("Verified User!")
-            check(username)
-        else:
-            print("No Username Found")"""
 
 def menu():
     print("""Welcome to Password Authentication Software
@@ -135,7 +104,6 @@ def menu():
     elif choice == 2:
         array()
     elif choice == 3:
-        #rainbowarray()
         attack()
 
 def generateValues():
@@ -164,8 +132,6 @@ def credentials():
         return
     else:
         print("invalid input")
-
-
 
 menu()
 generateValues()
