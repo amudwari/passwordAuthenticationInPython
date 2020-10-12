@@ -1,5 +1,5 @@
-In this project, I implement the password-based
-authentication which is used in UNIX variants
+In this project, I have implemented the password-based
+authentication that is used in UNIX variants
  and other operating systems. Here unique salt 
  values were generated and the password file 
  is created to store user name, salt values,
